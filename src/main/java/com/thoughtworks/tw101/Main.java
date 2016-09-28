@@ -1,5 +1,8 @@
 package com.thoughtworks.tw101;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -15,7 +18,11 @@ public class Main {
         ArrayList<String> featureList = new ArrayList<>();
         featureList.add("F");
         PrintStream printStream = System.out;
-        Menu menu = new Menu(printStream);
+
+        Library library = new Library(bookList, printStream);
+
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        Menu menu = new Menu(printStream, library, bufferedReader);
         Application application = new Application(printStream, new Library(bookList, printStream), menu);
         application.start();
     }

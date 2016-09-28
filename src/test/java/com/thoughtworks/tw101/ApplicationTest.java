@@ -49,17 +49,5 @@ public class ApplicationTest {
         verify(menu).display();
     }
 
-    @Test
-    public void shouldDisplayBooksWhenSelectingOptionListBooks() throws Exception {
-        bookList.add(book);
-        when(book.toString()).thenReturn("Book");
-        BufferedReader bufferedReader = mock(BufferedReader.class);
-        when(bufferedReader.readLine()).thenReturn("1");
-
-        application.start();
-
-        verify(library).listBooks();
-    }
-
 
 }
