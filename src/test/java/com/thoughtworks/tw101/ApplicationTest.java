@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
@@ -16,10 +17,13 @@ public class ApplicationTest {
 
     Application application;
     PrintStream printStream;
+    ArrayList<String> bookList;
     @Before
     public void setup(){
         printStream = mock(PrintStream.class);
-        application = new Application(printStream);
+        bookList = new ArrayList<>();
+        application = new Application(printStream, bookList);
+
     }
 
     @Test
@@ -29,4 +33,21 @@ public class ApplicationTest {
         verify(printStream).println("Welcome");
 
     }
+
+    @Test
+    public void shouldPrintOneBookAfterWelcomeMessage(){
+        bookList.add("Book1");
+        application.start();
+
+        verify(printStream).println("Book1");
+    }
+
+    @Test
+    public void shouldPrintTwoBooksAfterWelcomeMessage(){
+        bookList.add("Book2");
+        application.start();
+
+        verify(printStream).println("Book2");
+    }
+
 }

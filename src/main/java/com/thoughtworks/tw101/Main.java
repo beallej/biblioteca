@@ -1,6 +1,7 @@
 package com.thoughtworks.tw101;
 
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 /**
  * Created by jbealle on 9/27/16.
@@ -8,7 +9,8 @@ import java.io.PrintStream;
 public class Main {
 
     public static void main(String[] args) {
-        Application application = new Application(System.out);
+        ArrayList<String> bookList = new ArrayList<>();
+        Application application = new Application(System.out, bookList);
         application.start();
     }
 }
