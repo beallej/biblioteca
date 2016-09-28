@@ -15,7 +15,8 @@ public class Main {
         ArrayList<String> featureList = new ArrayList<>();
         featureList.add("F");
         PrintStream printStream = System.out;
-        Application application = new Application(printStream, bookList, new Library(bookList, printStream));
+        Menu menu = new Menu(printStream);
+        Application application = new Application(printStream, new Library(bookList, printStream), menu);
         application.start();
     }
 }

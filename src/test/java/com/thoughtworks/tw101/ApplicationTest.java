@@ -6,7 +6,6 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 import static org.mockito.Mockito.mock;
@@ -23,13 +22,16 @@ public class ApplicationTest {
     ArrayList<Book> bookList;
     private Book book;
     private Library library;
+    private Menu menu;
+
     @Before
     public void setup(){
         printStream = mock(PrintStream.class);
         bookList = new ArrayList<>();
         library = mock(Library.class);
         book = mock(Book.class);
-        application = new Application(printStream, bookList, library);
+        menu = mock(Menu.class);
+        application = new Application(printStream, library, menu);
     }
 
     @Test
@@ -40,10 +42,11 @@ public class ApplicationTest {
 
     }
 
+
     @Test
-    public void shouldIncludeListBooksWhenDisplayingFeatureList(){
+    public void shouldDisplayMenuOnStart() throws Exception {
         application.start();
-        verify(printStream).println("1: List Books");
+        verify(menu).display();
     }
 
     @Test
@@ -57,4 +60,6 @@ public class ApplicationTest {
 
         verify(library).listBooks();
     }
+
+
 }

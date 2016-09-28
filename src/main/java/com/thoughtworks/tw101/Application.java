@@ -1,25 +1,24 @@
 package com.thoughtworks.tw101;
 
 import java.io.PrintStream;
-import java.util.ArrayList;
 
 /**
  * Created by jbealle on 9/27/16.
  */
 public class Application {
-    private ArrayList<Book> bookList;
     private Library library;
+    private Menu menu;
     PrintStream printStream;
 
-    public Application(PrintStream printStream, ArrayList<Book> bookList, Library library) {
+    public Application(PrintStream printStream, Library library, Menu menu) {
         this.printStream = printStream;
-        this.bookList = bookList;
         this.library = library;
+        this.menu = menu;
     }
 
     public void start() {
         printStream.println("Welcome");
-        printStream.println("1: List Books");
+        menu.display();
         library.listBooks();
     }
 
