@@ -65,5 +65,10 @@ public class ApplicationTest {
         verify(printStream).println("Test");
     }
 
+    @Test
+    public void shouldIncludeListBooksWhenDisplayingFeatureList(){
+        application.start();
+        verify(printStream).println("1: List Books");
+    }
 
 }

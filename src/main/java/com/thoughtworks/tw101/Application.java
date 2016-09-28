@@ -18,7 +18,7 @@ public class Application {
 
     public void start() {
         printStream.println("Welcome");
-
+        printStream.println("1: List Books");
         for(Book book : bookList){
             printStream.println(book.toString());
         }
