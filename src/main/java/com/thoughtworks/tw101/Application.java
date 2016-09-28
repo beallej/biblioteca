@@ -8,19 +8,20 @@ import java.util.ArrayList;
  */
 public class Application {
     private ArrayList<Book> bookList;
+    private Library library;
     PrintStream printStream;
 
-    public Application(PrintStream printStream, ArrayList<Book> bookList) {
-
+    public Application(PrintStream printStream, ArrayList<Book> bookList, Library library) {
         this.printStream = printStream;
         this.bookList = bookList;
+        this.library = library;
     }
 
     public void start() {
         printStream.println("Welcome");
         printStream.println("1: List Books");
-        for(Book book : bookList){
-            printStream.println(book.toString());
-        }
+        library.listBooks();
     }
+
+
 }

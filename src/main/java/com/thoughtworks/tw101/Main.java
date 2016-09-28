@@ -1,5 +1,6 @@
 package com.thoughtworks.tw101;
 
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 /**
@@ -13,7 +14,8 @@ public class Main {
         bookList.add(book);
         ArrayList<String> featureList = new ArrayList<>();
         featureList.add("F");
-        Application application = new Application(System.out, bookList);
+        PrintStream printStream = System.out;
+        Application application = new Application(printStream, bookList, new Library(bookList, printStream));
         application.start();
     }
 }

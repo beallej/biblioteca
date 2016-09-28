@@ -3,8 +3,10 @@ package com.thoughtworks.tw101;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.BufferedReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 import static org.mockito.Mockito.mock;
@@ -20,14 +22,14 @@ public class ApplicationTest {
     PrintStream printStream;
     ArrayList<Book> bookList;
     private Book book;
-
+    private Library library;
     @Before
     public void setup(){
         printStream = mock(PrintStream.class);
         bookList = new ArrayList<>();
-        application = new Application(printStream, bookList);
-
+        library = mock(Library.class);
         book = mock(Book.class);
+        application = new Application(printStream, bookList, library);
     }
 
     @Test
@@ -39,36 +41,20 @@ public class ApplicationTest {
     }
 
     @Test
-    public void shouldPrintOneBookAfterWelcomeMessage(){
-        bookList.add(book);
-        when(book.toString()).thenReturn("Book1");
-        application.start();
-        verify(printStream).println("Book1");
-    }
-
-    @Test
-    public void shouldPrintTwoBooksAfterWelcomeMessage(){
-        bookList.add(book);
-        Book book2 = mock(Book.class);
-        bookList.add(book2);
-        when(book.toString()).thenReturn("Book2");
-        application.start();
-        verify(printStream).println("Book2");
-    }
-
-    @Test
-    public void shouldDisplayBookDetailsWhenStarting(){
-        Book book = mock(Book.class);
-        when(book.toString()).thenReturn("Test");
-        bookList.add(book);
-        application.start();
-        verify(printStream).println("Test");
-    }
-
-    @Test
     public void shouldIncludeListBooksWhenDisplayingFeatureList(){
         application.start();
         verify(printStream).println("1: List Books");
     }
 
+    @Test
+    public void shouldDisplayBooksWhenSelectingOptionListBooks() throws Exception {
+        bookList.add(book);
+        when(book.toString()).thenReturn("Book");
+        BufferedReader bufferedReader = mock(BufferedReader.class);
+        when(bufferedReader.readLine()).thenReturn("1");
+
+        application.start();
+
+        verify(library).listBooks();
+    }
 }
