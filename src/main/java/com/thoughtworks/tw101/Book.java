@@ -14,4 +14,9 @@ public class Book {
         this.bookAuthor = bookAuthor;
         this.yearPublished = yearPublished;
     }
+
+    @Override
+    public String toString() {
+        return bookTitle + " | " + bookAuthor + " | " + Integer.toString(yearPublished);
+    }
 }

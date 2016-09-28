@@ -57,13 +57,13 @@ public class ApplicationTest {
     }
 
     @Test
-    public void shouldDisplayBookDetailsWhenPrintingBook(){
+    public void shouldDisplayBookDetailsWhenStarting(){
         Book book = mock(Book.class);
         when(book.toString()).thenReturn("Test");
-
         bookList.add(book);
         application.start();
-        //assertThat(printStream, both(containsString(bookTitle)).and(containsString(bookAuthor)).and(containsString(Integer.toString(yearPublished))));
+        verify(printStream).println("Test");
     }
+
 
 }
