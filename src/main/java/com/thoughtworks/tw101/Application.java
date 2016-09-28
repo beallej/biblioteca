@@ -7,10 +7,10 @@ import java.util.ArrayList;
  * Created by jbealle on 9/27/16.
  */
 public class Application {
-    private ArrayList<String> bookList;
+    private ArrayList<Book> bookList;
     PrintStream printStream;
 
-    public Application(PrintStream printStream, ArrayList<String> bookList) {
+    public Application(PrintStream printStream, ArrayList<Book> bookList) {
 
         this.printStream = printStream;
         this.bookList = bookList;
@@ -19,8 +19,8 @@ public class Application {
     public void start() {
         printStream.println("Welcome");
 
-        for(String book : bookList){
-            printStream.println(book);
+        for(Book book : bookList){
+            printStream.println(book.toString());
         }
     }
 }
