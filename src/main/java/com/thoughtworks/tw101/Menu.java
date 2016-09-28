@@ -15,5 +15,6 @@ public class Menu {
 
     public void display() {
         printStream.println("1: List Books");
+        printStream.println("Please enter the number of the action you would like to perform");
     }
 }
