@@ -27,7 +27,7 @@ public class Menu {
             String choice = bufferedReader.readLine();
             if (choice == "1") {
                 library.listBooks();
-            }
+            } else { printStream.println("Select a valid option!"); }
 
         } catch (IOException e) {
             printStream.println("Bad input");
