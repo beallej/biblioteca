@@ -19,51 +19,35 @@ public class MenuTest {
     private PrintStream printStream;
     private Menu menu;
     private Library library;
-    private BufferedReader bufferedReader;
+    private Input input;
 
     @Before
     public void setUp() throws Exception {
-        bufferedReader = mock(BufferedReader.class);
+        input = mock(Input.class);
         printStream = mock(PrintStream.class);
         library = mock(Library.class);
-        menu = new Menu(printStream, library, bufferedReader);
+        menu = new Menu(printStream, library, input);
 
     }
 
     @Test
     public void shouldDisplayListBooksOnStart() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1");
+        when(input.getInput()).thenReturn("1");
         menu.display();
         verify(printStream).println("1: List Books");
     }
 
     @Test
     public void shouldAskUserToPickOptionOnStart() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1");
+        when(input.getInput()).thenReturn("1");
         menu.display();
         verify(printStream).println("Please enter the number of the action you would like to perform");
     }
 
     @Test
     public void shouldDisplayBooksWhenSelectingOptionListBooks() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("1");
+        when(input.getInput()).thenReturn("1");
         menu.display();
         verify(library).listBooks();
-    }
-
-    @Test
-    public void shouldNotifyUserWhenInvalidOptionIsSelected() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("x", "1");
-        menu.display();
-        verify(printStream).println("Select a valid option!");
-
-    }
-
-    @Test
-    public void shouldAllowUserToChooseAgainWhenInvaidOptionSelected() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("x", "1");
-        menu.display();
-        verify(library).listBooks();
-
     }
 }

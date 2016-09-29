@@ -10,44 +10,25 @@ import java.io.PrintStream;
 public class Menu {
     private PrintStream printStream;
     private Library library;
-    private BufferedReader bufferedReader;
+    private Input input;
 
-    public Menu(PrintStream printStream, Library library, BufferedReader bufferedReader) {
+    public Menu(PrintStream printStream, Library library, Input input) {
 
         this.printStream = printStream;
         this.library = library;
 
-        this.bufferedReader = bufferedReader;
+        this.input = input;
     }
 
     public void display() {
         printStream.println("1: List Books");
         printStream.println("Please enter the number of the action you would like to perform");
 
-        String choice = getInput();
+        String choice = input.getInput();
         library.listBooks();
 
 
 
     }
 
-    private String getInput() {
-        String choice = null;
-        while (choice == null) {
-            try {
-                choice = bufferedReader.readLine();
-                if (choice.equals("1")) {
-                    return choice;
-                } else {
-                    printStream.println("Select a valid option!");
-                    choice = null;
-                }
-
-            } catch (IOException e) {
-                //printStream.println("Bad input");
-                choice = null;
-            }
-        }
-        return choice;
-    }
 }

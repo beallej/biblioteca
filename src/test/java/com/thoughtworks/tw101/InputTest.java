@@ -8,6 +8,7 @@ import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
@@ -31,5 +32,21 @@ public class InputTest {
     public void shouldGetInputWhenUserEntersValidOption() throws Exception {
         when(bufferedReader.readLine()).thenReturn("1");
         assertEquals(input.getInput(), "1");
+    }
+
+    @Test
+    public void shouldNotifyUserWhenInvalidOptionIsSelected() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("x","1");
+        input.getInput();
+        verify(printStream).println("Select a valid option!");
+
+    }
+
+    @Test
+    public void shouldAllowUserToChooseAgainWhenInvaidOptionSelected() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("x", "1");
+        String choice = input.getInput();
+        assertEquals(choice, "1");
+
     }
 }

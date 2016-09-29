@@ -22,7 +22,8 @@ public class Main {
         Library library = new Library(bookList, printStream);
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        Menu menu = new Menu(printStream, library, bufferedReader);
+        Input input = new Input(printStream, bufferedReader);
+        Menu menu = new Menu(printStream, library, input);
         Application application = new Application(printStream, new Library(bookList, printStream), menu);
         application.start();
     }
