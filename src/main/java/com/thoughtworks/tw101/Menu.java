@@ -31,7 +31,7 @@ public class Menu {
 
     }
 
-    public String getInput() {
+    private String getInput() {
         String choice = null;
         while (choice == null) {
             try {
@@ -44,7 +44,7 @@ public class Menu {
                 }
 
             } catch (IOException e) {
-                printStream.println("Bad input");
+                //printStream.println("Bad input");
                 choice = null;
             }
         }
