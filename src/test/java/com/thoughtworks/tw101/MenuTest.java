@@ -32,12 +32,14 @@ public class MenuTest {
 
     @Test
     public void shouldDisplayListBooksOnStart() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("1");
         menu.display();
         verify(printStream).println("1: List Books");
     }
 
     @Test
     public void shouldAskUserToPickOptionOnStart() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("1");
         menu.display();
         verify(printStream).println("Please enter the number of the action you would like to perform");
     }
@@ -51,9 +53,17 @@ public class MenuTest {
 
     @Test
     public void shouldNotifyUserWhenInvalidOptionIsSelected() throws Exception {
-        when(bufferedReader.readLine()).thenReturn("x");
+        when(bufferedReader.readLine()).thenReturn("x", "1");
         menu.display();
         verify(printStream).println("Select a valid option!");
+
+    }
+
+    @Test
+    public void shouldAllowUserToChooseAgainWhenInvaidOptionSelected() throws Exception {
+        when(bufferedReader.readLine()).thenReturn("x", "1");
+        menu.display();
+        verify(library).listBooks();
 
     }
 }

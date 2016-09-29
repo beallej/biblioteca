@@ -23,15 +23,31 @@ public class Menu {
     public void display() {
         printStream.println("1: List Books");
         printStream.println("Please enter the number of the action you would like to perform");
-        try {
-            String choice = bufferedReader.readLine();
-            if (choice == "1") {
-                library.listBooks();
-            } else { printStream.println("Select a valid option!"); }
 
-        } catch (IOException e) {
-            printStream.println("Bad input");
+        String choice = getInput();
+        library.listBooks();
+
+
+
+    }
+
+    public String getInput() {
+        String choice = null;
+        while (choice == null) {
+            try {
+                choice = bufferedReader.readLine();
+                if (choice.equals("1")) {
+                    return choice;
+                } else {
+                    printStream.println("Select a valid option!");
+                    choice = null;
+                }
+
+            } catch (IOException e) {
+                printStream.println("Bad input");
+                choice = null;
+            }
         }
-
+        return choice;
     }
 }
